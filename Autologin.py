@@ -1,4 +1,8 @@
 ﻿from selenium import webdriver
+import winsound
+from selenium.webdriver.support.wait import WebDriverWait
+
+winsound.Beep(500,1000) 
 
 test = True
 chromedriver = 'C:\Users\Basov_il\Documents\chromedriver_win32\chromedriver.exe'
@@ -7,7 +11,7 @@ driver = webdriver.Chrome(chromedriver)
 while test:
 	driver.get("https://monprojetquebec.immigration-quebec.gouv.qc.ca/_login/Micc/Intranet/ExternalRedirectToStstLogin.aspx?ReturnUrl=%2fFr%2f_layouts%2fAuthenticate.aspx%3fSource%3d%252FFr%252FPages%252Fmondossier%252Easpx&Source=%2FFr%2FPages%2Fmondossier%2Easpx")
 	source = driver.page_source.encode("utf-8") # Here is your populated data.
-	
+	result = WebDriverWait(driver, 30).until(lambda x: x.find_element_by_id("txt_nomUtilisateur"))
 	if "Nous sommes" not in source:
 		username = driver.find_element_by_id("txt_nomUtilisateur")
 		password = driver.find_element_by_id("txt_motDePasse")
@@ -35,5 +39,7 @@ while test:
 				test = False
 				break
 		source = driver.page_source.encode("utf-8")
+		print("Nous sommes" not in source)
 		if "Nous sommes" not in source:
-			test = False    
+			test = False
+winsound.Beep(2500,1000)    
