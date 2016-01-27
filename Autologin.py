@@ -5,7 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 winsound.Beep(500,1000) 
 
 test = True
-chromedriver = 'C:\Users\Basov_il\Documents\chromedriver_win32\chromedriver.exe'
+chromedriver = 'c:\Users\Home\Documents\chromedriver_win32\chromedriver.exe'
 
 driver = webdriver.Chrome(chromedriver)
 while test:
@@ -24,22 +24,24 @@ while test:
 
 		if "votre question" in source:
 			response = driver.find_element_by_id("txt_reponse")
+			# print(source)
 			if "Dans quelle ville a eu lieu mon mariage" in source:
 				response.send_keys("Kaluga")
 				driver.find_element_by_name("btn_suivant").click()
-				
+				print("Kaluga")
 			elif "premier film" in source:
 				response.send_keys("Godfather")
 				driver.find_element_by_name("btn_suivant").click()
-				
+				print("Godfather")
 			elif "lune de miel" in source:
 				response.send_keys("Prague")
 				driver.find_element_by_name("btn_suivant").click()
+				print("Prague")
 			else:
 				test = False
 				break
 		source = driver.page_source.encode("utf-8")
-		print("Nous sommes" not in source)
-		if "Nous sommes" not in source:
+		# print("Nous sommes" not in source)
+		if "Nous sommes" not in source and "Erreur" not in source:
 			test = False
 winsound.Beep(2500,1000)    
