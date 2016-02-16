@@ -1,6 +1,7 @@
 ﻿from selenium import webdriver
 import winsound
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
 
 winsound.Beep(500,300) 
 
@@ -12,9 +13,15 @@ while test:
 	print("go")
 	driver.get("https://monprojetquebec.immigration-quebec.gouv.qc.ca/Fr/Pages/mondossier.aspx")
 
-	result = WebDriverWait(driver, 30).until(lambda x: x.find_element_by_id("txt_nomUtilisateur") or x.find_element_by_class_name("micclien"))
+	# driver.get("http://www.immigration-quebec.gouv.qc.ca/en/informations/mon-projet-quebec/")
+	load = True
+	try:
+		result = WebDriverWait(driver, 10).until(lambda x: x.find_element_by_id("txt_nomUtilisateur") or x.find_element_by_class_name("micclien"))
+	except:
+		load = False
+	print("go1")
 	source = driver.page_source.encode("utf-8") 
-	if "Nous sommes" not in source:
+	if ("Nous sommes" not in source) and load:
 		username = driver.find_element_by_id("txt_nomUtilisateur")
 		password = driver.find_element_by_id("txt_motDePasse")
 
