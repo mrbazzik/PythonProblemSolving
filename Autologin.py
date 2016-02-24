@@ -1,23 +1,27 @@
 ﻿from selenium import webdriver
 import winsound
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
 
-winsound.Beep(500,1000) 
+winsound.Beep(500,300) 
 
 test = True
 chromedriver = 'c:\Users\Home\Documents\chromedriver_win32\chromedriver.exe'
 
 driver = webdriver.Chrome(chromedriver)
 while test:
+	print("go")
 	driver.get("https://monprojetquebec.immigration-quebec.gouv.qc.ca/Fr/Pages/mondossier.aspx")
-		#https://monprojetquebec.immigration-quebec.gouv.qc.ca/_login/Micc/Intranet/ExternalRedirectToStstLogin.aspx?ReturnUrl=%2fFr%2f_layouts%2fAuthenticate.aspx%3fSource%3d%252FFr%252FPages%252Fmondossier%252Easpx&Source=%2FFr%2FPages%2Fmondossier%2Easpx")
+
+	# driver.get("http://www.immigration-quebec.gouv.qc.ca/en/informations/mon-projet-quebec/")
 	load = True
 	try:
-		result = WebDriverWait(driver, 10).until(lambda x: x.find_element_by_id("txt_nomUtilisateur") or ("Nous sommes" in x.page_source.encode("utf-8")))
+		result = WebDriverWait(driver, 10).until(lambda x: x.find_element_by_id("txt_nomUtilisateur") or x.find_element_by_class_name("micclien"))
 	except:
 		load = False
-	source = driver.page_source.encode("utf-8") # Here is your populated data.
-	if "Nous sommes" not in source and load:
+	print("go1")
+	source = driver.page_source.encode("utf-8") 
+	if ("Nous sommes" not in source) and load:
 		username = driver.find_element_by_id("txt_nomUtilisateur")
 		password = driver.find_element_by_id("txt_motDePasse")
 
@@ -45,10 +49,9 @@ while test:
 			else:
 				test = False
 				break
-		result = WebDriverWait(driver, 30).until(lambda x: ("Nous sommes" in x.page_source.encode("utf-8")))
+		result = WebDriverWait(driver, 30).until(lambda x: x.find_element_by_class_name("micclien"))
 		source = driver.page_source.encode("utf-8")
-
 		print("Nous sommes" in source)
 		if "Nous sommes" not in source:
 			test = False
-winsound.Beep(2500,1000)    
+winsound.Beep(2500,300)    
