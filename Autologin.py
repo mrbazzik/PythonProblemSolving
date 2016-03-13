@@ -6,7 +6,7 @@ from selenium.common.exceptions import NoSuchElementException
 winsound.Beep(500,300) 
 
 test = True
-chromedriver = 'C:\Users\Basov_il\Documents\chromedriver_win32\chromedriver.exe'
+chromedriver = 'c:\Users\VIA\Documents\chromedriver_win32\chromedriver.exe'
 
 driver = webdriver.Chrome(chromedriver)
 while test:
