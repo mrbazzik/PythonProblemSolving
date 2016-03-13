@@ -6,7 +6,11 @@ from selenium.common.exceptions import NoSuchElementException
 winsound.Beep(500,300) 
 
 test = True
+<<<<<<< HEAD
 chromedriver = 'c:\Users\VIA\Documents\chromedriver_win32\chromedriver.exe'
+=======
+chromedriver = 'c:\Users\Home\Documents\chromedriver_win32\chromedriver.exe'
+>>>>>>> 8dcfb41d054360914260f0fd8798428d31301adf
 
 driver = webdriver.Chrome(chromedriver)
 while test:
@@ -25,25 +29,27 @@ while test:
 		username = driver.find_element_by_id("txt_nomUtilisateur")
 		password = driver.find_element_by_id("txt_motDePasse")
 
-		username.send_keys("mrbazzik")
-		password.send_keys("mpMOr10dvch")
+		username.send_keys("")
+		password.send_keys("")
 
 		driver.find_element_by_name("btn_connecter").click()
 		source = driver.page_source.encode("utf-8")
 
 		if "votre question" in source:
 			response = driver.find_element_by_id("txt_reponse")
+			# print(source)
 			if "Dans quelle ville a eu lieu mon mariage" in source:
 				response.send_keys("Kaluga")
 				driver.find_element_by_name("btn_suivant").click()
-				
+				print("Kaluga")
 			elif "premier film" in source:
 				response.send_keys("Godfather")
 				driver.find_element_by_name("btn_suivant").click()
-				
+				print("Godfather")
 			elif "lune de miel" in source:
 				response.send_keys("Prague")
 				driver.find_element_by_name("btn_suivant").click()
+				print("Prague")
 			else:
 				test = False
 				break
