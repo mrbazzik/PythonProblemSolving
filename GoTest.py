@@ -49,23 +49,23 @@ quests=[
 answers=[
 1,
 2,
-2,
+1,
 1,#3,1,2
 0,#3,2,1,0
-3,#0,1,2,3
-1,
+0,#0,1,2,3
+2,#1!!!!
 3,
 1,
-0,
+2,
 3,
 3,
 0,
+2,
+0, 
+2,
+0,
+1,#1!!!
 1,
-0,
-2,
-2,
-1,#1
-2,
 2,
 0,
 0,
@@ -89,7 +89,8 @@ answers=[
 winsound.Beep(500,300) 
 
 test = True
-chromedriver = 'c:/Users/VIA/Documents/chromedriver_win32/chromedriver.exe'
+# chromedriver = 'c:/Users/VIA/Documents/chromedriver_win32/chromedriver.exe'
+chromedriver = 'C:/Users/Basov_il/Documents/chromedriver_win32/chromedriver.exe'
 
 driver = webdriver.Chrome(chromedriver)
 driver.get("http://hi-psy.ru/elearning/test?id=11")
